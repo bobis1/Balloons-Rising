@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf7x6v0csnnou"]
+
+[ext_resource type="Texture2D" uid="uid://cjwtlmvy480bh" path="res://Sprites/dropped object.png" id="1_rhhad"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhhad"]
+size = Vector2(259, 262)
+
+[node name="Dropped Stuff" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+scale = Vector2(0.22972971, 0.23863636)
+gravity_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_rhhad")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("1_rhhad")

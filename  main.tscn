@@ -1,0 +1,130 @@
+[gd_scene load_steps=22 format=3 uid="uid://337yihf86h8l"]
+
+[ext_resource type="Script" uid="uid://2k6slmd1set3" path="res://addons/block_code/simple_nodes/simple_character/simple_character.gd" id="1_lho3r"]
+[ext_resource type="Texture2D" uid="uid://dibwx55npnn2a" path="res://icon.svg" id="2_4qs07"]
+[ext_resource type="Script" uid="uid://cumxsbxj56dmk" path="res://addons/block_code/block_code_node/block_code.gd" id="3_kq2gl"]
+[ext_resource type="Script" uid="uid://brx1cabdmgu38" path="res://addons/block_code/serialization/block_serialization_tree.gd" id="4_mp0at"]
+[ext_resource type="Script" uid="uid://u035wsjd5tpj" path="res://addons/block_code/serialization/block_serialization.gd" id="5_lv7mh"]
+[ext_resource type="Script" uid="uid://duvgxorhfitb7" path="res://addons/block_code/serialization/value_block_serialization.gd" id="6_4qs07"]
+[ext_resource type="Script" uid="uid://tlsvrkc3fubl" path="res://addons/block_code/serialization/block_script_serialization.gd" id="6_cravt"]
+[ext_resource type="Script" uid="uid://bwkinr8omutpw" path="res://addons/block_code/code_generation/variable_definition.gd" id="7_x0ixw"]
+[ext_resource type="Texture2D" uid="uid://c5j15kektht61" path="res://Sprites/Balloon-removebg-preview.png" id="9_kq2gl"]
+[ext_resource type="PackedScene" uid="uid://bf7x6v0csnnou" path="res://Obsts/dropped_stuff.tscn" id="10_mp0at"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrxmk"]
+size = Vector2(128, 129)
+
+[sub_resource type="Resource" id="Resource_4qs07"]
+script = ExtResource("6_4qs07")
+name = &"is_input_actioned"
+arguments = {
+"action": "pressed",
+"action_name": &"moveLeft"
+}
+
+[sub_resource type="Resource" id="Resource_mp0at"]
+script = ExtResource("5_lv7mh")
+name = &"Node2D_change_position"
+arguments = {
+"value": Vector2(-10, 0)
+}
+
+[sub_resource type="Resource" id="Resource_lv7mh"]
+script = ExtResource("5_lv7mh")
+name = &"if"
+children = Array[ExtResource("5_lv7mh")]([SubResource("Resource_mp0at")])
+arguments = {
+"condition": SubResource("Resource_4qs07")
+}
+
+[sub_resource type="Resource" id="Resource_cravt"]
+script = ExtResource("6_4qs07")
+name = &"is_input_actioned"
+arguments = {
+"action": "pressed",
+"action_name": &"moveRight"
+}
+
+[sub_resource type="Resource" id="Resource_x0ixw"]
+script = ExtResource("5_lv7mh")
+name = &"Node2D_change_position"
+arguments = {
+"value": Vector2(10, 0)
+}
+
+[sub_resource type="Resource" id="Resource_by80l"]
+script = ExtResource("5_lv7mh")
+name = &"if"
+children = Array[ExtResource("5_lv7mh")]([SubResource("Resource_x0ixw")])
+arguments = {
+"condition": SubResource("Resource_cravt")
+}
+
+[sub_resource type="Resource" id="Resource_p2wvv"]
+script = ExtResource("5_lv7mh")
+name = &"process"
+children = Array[ExtResource("5_lv7mh")]([SubResource("Resource_lv7mh"), SubResource("Resource_by80l")])
+
+[sub_resource type="Resource" id="Resource_5eo6v"]
+script = ExtResource("4_mp0at")
+root = SubResource("Resource_p2wvv")
+canvas_position = Vector2(350, 100)
+
+[sub_resource type="Resource" id="Resource_kq2gl"]
+script = ExtResource("6_cravt")
+script_inherits = "SimpleCharacter"
+block_serialization_trees = Array[ExtResource("4_mp0at")]([SubResource("Resource_5eo6v")])
+generated_script = "extends SimpleCharacter
+
+
+func _process(delta):
+	if (Input.is_action_pressed('moveLeft')):
+		position += Vector2(-10.0, 0.0)
+	if (Input.is_action_pressed('moveRight')):
+		position += Vector2(10.0, 0.0)
+
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kq2gl"]
+size = Vector2(200.31577, 203.10867)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="SimpleCharacter" type="CharacterBody2D" parent="." groups=["affected_by_gravity"]]
+script = ExtResource("1_lho3r")
+texture = ExtResource("2_4qs07")
+metadata/_custom_type_script = "uid://2k6slmd1set3"
+
+[node name="RigidBody2D" type="RigidBody2D" parent="SimpleCharacter"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SimpleCharacter/RigidBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_wrxmk")
+
+[node name="BlockCode" type="Node" parent="SimpleCharacter"]
+script = ExtResource("3_kq2gl")
+block_script = SubResource("Resource_kq2gl")
+metadata/_custom_type_script = "uid://cumxsbxj56dmk"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.9604645e-08, 203.99998)
+scale = Vector2(0.49421966, 0.48677248)
+texture = ExtResource("9_kq2gl")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Sprite2D"]
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/RigidBody2D"]
+position = Vector2(4.0467834, -92.44562)
+scale = Vector2(1, 1.0000004)
+shape = SubResource("RectangleShape2D_kq2gl")
+
+[node name="Dropped Stuff" type="RigidBody2D" parent="."]
+position = Vector2(1, -1)
+gravity_scale = 0.5
+
+[node name="Dropped Stuff" parent="Dropped Stuff" instance=ExtResource("10_mp0at")]
+position = Vector2(-51, -319)
+scale = Vector2(0.5790083, 0.52)
