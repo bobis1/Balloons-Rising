@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://337yihf86h8l"]
+[gd_scene load_steps=34 format=3 uid="uid://337yihf86h8l"]
 
 [ext_resource type="Script" uid="uid://2k6slmd1set3" path="res://addons/block_code/simple_nodes/simple_character/simple_character.gd" id="1_lho3r"]
-[ext_resource type="Texture2D" uid="uid://dibwx55npnn2a" path="res://icon.svg" id="2_4qs07"]
+[ext_resource type="Texture2D" uid="uid://bcvmxkvnkdwky" path="res://Sprites/Player-removebg-preview.png" id="2_p2wvv"]
 [ext_resource type="Script" uid="uid://cumxsbxj56dmk" path="res://addons/block_code/block_code_node/block_code.gd" id="3_kq2gl"]
 [ext_resource type="Script" uid="uid://brx1cabdmgu38" path="res://addons/block_code/serialization/block_serialization_tree.gd" id="4_mp0at"]
 [ext_resource type="Script" uid="uid://u035wsjd5tpj" path="res://addons/block_code/serialization/block_serialization.gd" id="5_lv7mh"]
@@ -9,12 +9,17 @@
 [ext_resource type="Script" uid="uid://tlsvrkc3fubl" path="res://addons/block_code/serialization/block_script_serialization.gd" id="6_cravt"]
 [ext_resource type="Script" uid="uid://bwkinr8omutpw" path="res://addons/block_code/code_generation/variable_definition.gd" id="7_x0ixw"]
 [ext_resource type="Texture2D" uid="uid://c5j15kektht61" path="res://Sprites/Balloon-removebg-preview.png" id="9_kq2gl"]
+[ext_resource type="PackedScene" uid="uid://cn54bc1gvxgda" path="res://Obsts/flying_stuff.tscn" id="10_by80l"]
+[ext_resource type="Script" uid="uid://e0n0oxwdbjtn" path="res://balloon.gd" id="10_lv7mh"]
 [ext_resource type="PackedScene" uid="uid://bf7x6v0csnnou" path="res://Obsts/dropped_stuff.tscn" id="10_mp0at"]
+[ext_resource type="PackedScene" uid="uid://btrqxnlb8oml5" path="res://Obsts/cloud.tscn" id="10_x0ixw"]
+[ext_resource type="Script" uid="uid://boe16o7irjdsc" path="res://floor.gd" id="12_cravt"]
+[ext_resource type="Script" uid="uid://cadqujgffvufo" path="res://ceiling.gd" id="14_p2wvv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrxmk"]
 size = Vector2(128, 129)
 
-[sub_resource type="Resource" id="Resource_4qs07"]
+[sub_resource type="Resource" id="Resource_p2wvv"]
 script = ExtResource("6_4qs07")
 name = &"is_input_actioned"
 arguments = {
@@ -22,22 +27,22 @@ arguments = {
 "action_name": &"moveLeft"
 }
 
-[sub_resource type="Resource" id="Resource_mp0at"]
+[sub_resource type="Resource" id="Resource_5eo6v"]
 script = ExtResource("5_lv7mh")
 name = &"Node2D_change_position"
 arguments = {
 "value": Vector2(-10, 0)
 }
 
-[sub_resource type="Resource" id="Resource_lv7mh"]
+[sub_resource type="Resource" id="Resource_o5ht5"]
 script = ExtResource("5_lv7mh")
 name = &"if"
-children = Array[ExtResource("5_lv7mh")]([SubResource("Resource_mp0at")])
+children = Array[ExtResource("5_lv7mh")]([SubResource("Resource_5eo6v")])
 arguments = {
-"condition": SubResource("Resource_4qs07")
+"condition": SubResource("Resource_p2wvv")
 }
 
-[sub_resource type="Resource" id="Resource_cravt"]
+[sub_resource type="Resource" id="Resource_wrxmk"]
 script = ExtResource("6_4qs07")
 name = &"is_input_actioned"
 arguments = {
@@ -45,35 +50,81 @@ arguments = {
 "action_name": &"moveRight"
 }
 
-[sub_resource type="Resource" id="Resource_x0ixw"]
+[sub_resource type="Resource" id="Resource_tio7k"]
 script = ExtResource("5_lv7mh")
 name = &"Node2D_change_position"
 arguments = {
 "value": Vector2(10, 0)
 }
 
-[sub_resource type="Resource" id="Resource_by80l"]
+[sub_resource type="Resource" id="Resource_ayrij"]
 script = ExtResource("5_lv7mh")
 name = &"if"
-children = Array[ExtResource("5_lv7mh")]([SubResource("Resource_x0ixw")])
+children = Array[ExtResource("5_lv7mh")]([SubResource("Resource_tio7k")])
 arguments = {
-"condition": SubResource("Resource_cravt")
+"condition": SubResource("Resource_wrxmk")
 }
 
-[sub_resource type="Resource" id="Resource_p2wvv"]
+[sub_resource type="Resource" id="Resource_g5tal"]
+script = ExtResource("6_4qs07")
+name = &"is_input_actioned"
+arguments = {
+"action": "pressed",
+"action_name": &"moveUp"
+}
+
+[sub_resource type="Resource" id="Resource_3gmaw"]
+script = ExtResource("5_lv7mh")
+name = &"Node2D_change_position"
+arguments = {
+"value": Vector2(0, -10)
+}
+
+[sub_resource type="Resource" id="Resource_uuj3c"]
+script = ExtResource("5_lv7mh")
+name = &"if"
+children = Array[ExtResource("5_lv7mh")]([SubResource("Resource_3gmaw")])
+arguments = {
+"condition": SubResource("Resource_g5tal")
+}
+
+[sub_resource type="Resource" id="Resource_wfwn2"]
+script = ExtResource("6_4qs07")
+name = &"is_input_actioned"
+arguments = {
+"action": "pressed",
+"action_name": &"moveDown"
+}
+
+[sub_resource type="Resource" id="Resource_mm5m2"]
+script = ExtResource("5_lv7mh")
+name = &"Node2D_change_position"
+arguments = {
+"value": Vector2(0, 10)
+}
+
+[sub_resource type="Resource" id="Resource_0jb2i"]
+script = ExtResource("5_lv7mh")
+name = &"if"
+children = Array[ExtResource("5_lv7mh")]([SubResource("Resource_mm5m2")])
+arguments = {
+"condition": SubResource("Resource_wfwn2")
+}
+
+[sub_resource type="Resource" id="Resource_ps18m"]
 script = ExtResource("5_lv7mh")
 name = &"process"
-children = Array[ExtResource("5_lv7mh")]([SubResource("Resource_lv7mh"), SubResource("Resource_by80l")])
+children = Array[ExtResource("5_lv7mh")]([SubResource("Resource_o5ht5"), SubResource("Resource_ayrij"), SubResource("Resource_uuj3c"), SubResource("Resource_0jb2i")])
 
-[sub_resource type="Resource" id="Resource_5eo6v"]
+[sub_resource type="Resource" id="Resource_o3qtg"]
 script = ExtResource("4_mp0at")
-root = SubResource("Resource_p2wvv")
+root = SubResource("Resource_ps18m")
 canvas_position = Vector2(350, 100)
 
 [sub_resource type="Resource" id="Resource_kq2gl"]
 script = ExtResource("6_cravt")
 script_inherits = "SimpleCharacter"
-block_serialization_trees = Array[ExtResource("4_mp0at")]([SubResource("Resource_5eo6v")])
+block_serialization_trees = Array[ExtResource("4_mp0at")]([SubResource("Resource_o3qtg")])
 generated_script = "extends SimpleCharacter
 
 
@@ -82,20 +133,30 @@ func _process(delta):
 		position += Vector2(-10.0, 0.0)
 	if (Input.is_action_pressed('moveRight')):
 		position += Vector2(10.0, 0.0)
+	if (Input.is_action_pressed('moveUp')):
+		position += Vector2(0.0, -10.0)
+	if (Input.is_action_pressed('moveDown')):
+		position += Vector2(0.0, 10.0)
 
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kq2gl"]
-size = Vector2(200.31577, 203.10867)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lv7mh"]
+size = Vector2(178, 259.73907)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cravt"]
+size = Vector2(203335, 2828.5)
 
 [node name="Node2D" type="Node2D"]
 
 [node name="SimpleCharacter" type="CharacterBody2D" parent="." groups=["affected_by_gravity"]]
+position = Vector2(-167, -100)
+scale = Vector2(0.25, 0.251)
 script = ExtResource("1_lho3r")
-texture = ExtResource("2_4qs07")
+texture = ExtResource("2_p2wvv")
 metadata/_custom_type_script = "uid://2k6slmd1set3"
 
 [node name="RigidBody2D" type="RigidBody2D" parent="SimpleCharacter"]
+position = Vector2(2, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SimpleCharacter/RigidBody2D"]
 position = Vector2(0, -0.5)
@@ -108,23 +169,89 @@ metadata/_custom_type_script = "uid://cumxsbxj56dmk"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(5.9604645e-08, 203.99998)
-scale = Vector2(0.49421966, 0.48677248)
-texture = ExtResource("9_kq2gl")
+[node name="Game Elements" type="Node" parent="."]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Sprite2D"]
-gravity_scale = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/RigidBody2D"]
-position = Vector2(4.0467834, -92.44562)
-scale = Vector2(1, 1.0000004)
-shape = SubResource("RectangleShape2D_kq2gl")
-
-[node name="Dropped Stuff" type="RigidBody2D" parent="."]
-position = Vector2(1, -1)
+[node name="Dropped Stuff" type="RigidBody2D" parent="Game Elements"]
+position = Vector2(-4, -205)
 gravity_scale = 0.5
 
-[node name="Dropped Stuff" parent="Dropped Stuff" instance=ExtResource("10_mp0at")]
-position = Vector2(-51, -319)
-scale = Vector2(0.5790083, 0.52)
+[node name="Dropped Stuff" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_mp0at")]
+position = Vector2(555, -164)
+
+[node name="Dropped Stuff2" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_mp0at")]
+position = Vector2(353, -153)
+
+[node name="Dropped Stuff3" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_mp0at")]
+position = Vector2(-297, -131)
+
+[node name="Dropped Stuff4" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_mp0at")]
+position = Vector2(141, -209)
+
+[node name="Dropped Stuff5" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_mp0at")]
+position = Vector2(-35, -354)
+
+[node name="Flying Stuff" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
+position = Vector2(215, 578)
+
+[node name="Flying Stuff3" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
+position = Vector2(-257, 582)
+
+[node name="Flying Stuff4" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
+position = Vector2(-142, 578)
+
+[node name="Flying Stuff5" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
+position = Vector2(-376, 578)
+
+[node name="Flying Stuff6" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
+position = Vector2(-376, 579)
+
+[node name="Flying Stuff2" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
+position = Vector2(-690, 1156)
+
+[node name="Balloon" type="Area2D" parent="Game Elements"]
+position = Vector2(2, -4.000061)
+scale = Vector2(0.49421966, 0.48677248)
+script = ExtResource("10_lv7mh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game Elements/Balloon"]
+position = Vector2(4.0467834, -82.17388)
+scale = Vector2(1, 1.0000004)
+shape = SubResource("RectangleShape2D_lv7mh")
+
+[node name="BalloonSprite" type="Sprite2D" parent="Game Elements/Balloon"]
+scale = Vector2(1, 1.0000001)
+texture = ExtResource("9_kq2gl")
+
+[node name="Floor" type="Area2D" parent="."]
+position = Vector2(-34, 11661)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("12_cravt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(-254, -8399)
+shape = SubResource("RectangleShape2D_cravt")
+
+[node name="Ceiling" type="Area2D" parent="."]
+position = Vector2(-6, 5907)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_p2wvv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(-254, -8399)
+shape = SubResource("RectangleShape2D_cravt")
+
+[node name="Cloud" parent="." instance=ExtResource("10_x0ixw")]
+position = Vector2(387, -288)
+reset_y = 542.0
+start_y = -288.0
+
+[node name="Cloud2" parent="." instance=ExtResource("10_x0ixw")]
+position = Vector2(-422, -278)
+reset_y = 542.0
+start_y = -288.0
+
+[connection signal="body_entered" from="Game Elements/Balloon" to="Game Elements/Balloon" method="_on_body_entered"]
+[connection signal="body_entered" from="Floor" to="Floor" method="_on_body_entered"]
+[connection signal="body_entered" from="Ceiling" to="Ceiling" method="_on_body_entered"]

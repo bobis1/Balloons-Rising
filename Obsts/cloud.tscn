@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://btrqxnlb8oml5"]
+
+[ext_resource type="Texture2D" uid="uid://b0vnrye75tdp1" path="res://Sprites/Cloud_1-removebg-preview.png" id="1_4rphk"]
+[ext_resource type="Script" uid="uid://bh3705s6yqqgy" path="res://cloud.gd" id="1_b3oxr"]
+
+[node name="Cloud" type="Node2D" node_paths=PackedStringArray("cloud") groups=["Cloud"]]
+script = ExtResource("1_b3oxr")
+speed = 100.0
+cloud = NodePath(".")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.31999725, 0.36000043)
+scale = Vector2(0.31999725, 0.36000043)
+texture = ExtResource("1_4rphk")
