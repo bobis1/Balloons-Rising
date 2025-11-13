@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c5j15kektht61" path="res://Sprites/Balloon-removebg-preview.png" id="9_kq2gl"]
 [ext_resource type="PackedScene" uid="uid://cn54bc1gvxgda" path="res://Obsts/flying_stuff.tscn" id="10_by80l"]
 [ext_resource type="Script" uid="uid://e0n0oxwdbjtn" path="res://balloon.gd" id="10_lv7mh"]
-[ext_resource type="PackedScene" uid="uid://bf7x6v0csnnou" path="res://Obsts/dropped_stuff.tscn" id="10_mp0at"]
+[ext_resource type="PackedScene" uid="uid://b5vnfaqcfnpop" path="res://Obsts/falling_stuff.tscn" id="10_p2wvv"]
 [ext_resource type="PackedScene" uid="uid://btrqxnlb8oml5" path="res://Obsts/cloud.tscn" id="10_x0ixw"]
 [ext_resource type="Script" uid="uid://boe16o7irjdsc" path="res://floor.gd" id="12_cravt"]
 [ext_resource type="Script" uid="uid://cadqujgffvufo" path="res://ceiling.gd" id="14_p2wvv"]
@@ -141,7 +141,7 @@ func _process(delta):
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lv7mh"]
-size = Vector2(178, 259.73907)
+size = Vector2(186.1228, 240.8042)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cravt"]
 size = Vector2(203335, 2828.5)
@@ -175,47 +175,28 @@ metadata/_custom_type_script = "uid://cumxsbxj56dmk"
 position = Vector2(-4, -205)
 gravity_scale = 0.5
 
-[node name="Dropped Stuff" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_mp0at")]
-position = Vector2(555, -164)
-
-[node name="Dropped Stuff2" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_mp0at")]
-position = Vector2(353, -153)
-
-[node name="Dropped Stuff3" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_mp0at")]
-position = Vector2(-297, -131)
-
-[node name="Dropped Stuff4" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_mp0at")]
-position = Vector2(141, -209)
-
-[node name="Dropped Stuff5" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_mp0at")]
-position = Vector2(-35, -354)
-
 [node name="Flying Stuff" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
-position = Vector2(215, 578)
-
-[node name="Flying Stuff3" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
-position = Vector2(-257, 582)
-
-[node name="Flying Stuff4" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
-position = Vector2(-142, 578)
-
-[node name="Flying Stuff5" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
-position = Vector2(-376, 578)
-
-[node name="Flying Stuff6" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
-position = Vector2(-376, 579)
+position = Vector2(-213, 396)
 
 [node name="Flying Stuff2" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
-position = Vector2(-690, 1156)
+position = Vector2(234, 396)
 
-[node name="Balloon" type="Area2D" parent="Game Elements"]
+[node name="Falling Stuff" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_p2wvv")]
+position = Vector2(-311, 0)
+
+[node name="Falling Stuff2" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_p2wvv")]
+position = Vector2(340, -27)
+
+[node name="Balloon" type="Area2D" parent="Game Elements" node_paths=PackedStringArray("balloonSprite")]
 position = Vector2(2, -4.000061)
 scale = Vector2(0.49421966, 0.48677248)
 script = ExtResource("10_lv7mh")
+balloonSprite = NodePath("BalloonSprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game Elements/Balloon"]
-position = Vector2(4.0467834, -82.17388)
-scale = Vector2(1, 1.0000004)
+position = Vector2(-0.014621258, -72.70646)
+rotation = -0.008598914
+scale = Vector2(1, 1.0000005)
 shape = SubResource("RectangleShape2D_lv7mh")
 
 [node name="BalloonSprite" type="Sprite2D" parent="Game Elements/Balloon"]

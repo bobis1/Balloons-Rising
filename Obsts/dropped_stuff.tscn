@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bf7x6v0csnnou"]
+[gd_scene load_steps=3 format=3 uid="uid://cfoo2lux7mtm4"]
 
 [ext_resource type="Texture2D" uid="uid://cjwtlmvy480bh" path="res://Sprites/dropped object.png" id="1_rhhad"]
 
@@ -6,15 +6,14 @@
 size = Vector2(259, 262)
 
 [node name="Dropped Stuff" type="Node2D" groups=["DroppedStuff"]]
+scale = Vector2(60, 60)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." groups=["DroppedStuff"]]
-scale = Vector2(0.22972971, 0.23863636)
-gravity_scale = 0.5
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" groups=["DroppedStuff"]]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.05743243, 0.059659094)
 shape = SubResource("RectangleShape2D_rhhad")
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" groups=["DroppedStuff"]]
-scale = Vector2(0.25, 0.25)
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["DroppedStuff"]]
+scale = Vector2(0.057432428, 0.05965909)
 texture = ExtResource("1_rhhad")
