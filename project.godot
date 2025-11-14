@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0.17732778, 0.5395108, 0.8133637, 1)
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://Globals.gd"
+
 [dotnet]
 
 project/assembly_name="Balloon Game"

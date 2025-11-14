@@ -18,6 +18,7 @@ func _on_body_entered(body):
 		balloonSprite.texture = poppedTexture
 		await get_tree().create_timer(1).timeout
 		get_tree().change_scene_to_file("res:// main.tscn")
+		Globals.Score = 0
 	
 
 	

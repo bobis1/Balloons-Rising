@@ -1,5 +1,6 @@
-[gd_scene load_steps=34 format=3 uid="uid://337yihf86h8l"]
+[gd_scene load_steps=35 format=3 uid="uid://337yihf86h8l"]
 
+[ext_resource type="Script" uid="uid://c44a8doqghr23" path="res://Globals.gd" id="1_5eo6v"]
 [ext_resource type="Script" uid="uid://2k6slmd1set3" path="res://addons/block_code/simple_nodes/simple_character/simple_character.gd" id="1_lho3r"]
 [ext_resource type="Texture2D" uid="uid://bcvmxkvnkdwky" path="res://Sprites/Player-removebg-preview.png" id="2_p2wvv"]
 [ext_resource type="Script" uid="uid://cumxsbxj56dmk" path="res://addons/block_code/block_code_node/block_code.gd" id="3_kq2gl"]
@@ -140,34 +141,67 @@ func _process(delta):
 
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lv7mh"]
-size = Vector2(186.1228, 240.8042)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cravt"]
 size = Vector2(203335, 2828.5)
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lv7mh"]
+size = Vector2(186.1228, 240.8042)
 
-[node name="SimpleCharacter" type="CharacterBody2D" parent="." groups=["affected_by_gravity"]]
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_5eo6v")
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["affected_by_gravity"]]
 position = Vector2(-167, -100)
 scale = Vector2(0.25, 0.251)
 script = ExtResource("1_lho3r")
 texture = ExtResource("2_p2wvv")
 metadata/_custom_type_script = "uid://2k6slmd1set3"
 
-[node name="RigidBody2D" type="RigidBody2D" parent="SimpleCharacter"]
+[node name="RigidBody2D" type="RigidBody2D" parent="Player"]
 position = Vector2(2, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SimpleCharacter/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RigidBody2D"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_wrxmk")
 
-[node name="BlockCode" type="Node" parent="SimpleCharacter"]
+[node name="BlockCode" type="Node" parent="Player"]
 script = ExtResource("3_kq2gl")
 block_script = SubResource("Resource_kq2gl")
 metadata/_custom_type_script = "uid://cumxsbxj56dmk"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Floor" type="Area2D" parent="." node_paths=PackedStringArray("ScoreInt")]
+position = Vector2(-34, 11661)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("12_cravt")
+ScoreInt = NodePath("../Control/ScoreInt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(-254, -8399)
+shape = SubResource("RectangleShape2D_cravt")
+
+[node name="Ceiling" type="Area2D" parent="." node_paths=PackedStringArray("ScoreInt")]
+position = Vector2(-6, 5907)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_p2wvv")
+ScoreInt = NodePath("../Control/ScoreInt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(-254, -8399)
+shape = SubResource("RectangleShape2D_cravt")
+
+[node name="Cloud" parent="." instance=ExtResource("10_x0ixw")]
+position = Vector2(387, -288)
+reset_y = 542.0
+start_y = -288.0
+
+[node name="Cloud2" parent="." instance=ExtResource("10_x0ixw")]
+position = Vector2(-422, -278)
+reset_y = 542.0
+start_y = -288.0
 
 [node name="Game Elements" type="Node" parent="."]
 
@@ -203,36 +237,30 @@ shape = SubResource("RectangleShape2D_lv7mh")
 scale = Vector2(1, 1.0000001)
 texture = ExtResource("9_kq2gl")
 
-[node name="Floor" type="Area2D" parent="."]
-position = Vector2(-34, 11661)
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("12_cravt")
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(-254, -8399)
-shape = SubResource("RectangleShape2D_cravt")
+[node name="ScoreLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -119.0
+offset_top = -321.0
+offset_right = -71.0
+offset_bottom = -298.0
+scale = Vector2(3, 3)
+text = "Score:"
 
-[node name="Ceiling" type="Area2D" parent="."]
-position = Vector2(-6, 5907)
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("14_p2wvv")
+[node name="ScoreInt" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -317.0
+offset_right = 72.0
+offset_bottom = -294.0
+scale = Vector2(3, 3)
+text = "0"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
-position = Vector2(-254, -8399)
-shape = SubResource("RectangleShape2D_cravt")
-
-[node name="Cloud" parent="." instance=ExtResource("10_x0ixw")]
-position = Vector2(387, -288)
-reset_y = 542.0
-start_y = -288.0
-
-[node name="Cloud2" parent="." instance=ExtResource("10_x0ixw")]
-position = Vector2(-422, -278)
-reset_y = 542.0
-start_y = -288.0
-
-[connection signal="body_entered" from="Game Elements/Balloon" to="Game Elements/Balloon" method="_on_body_entered"]
 [connection signal="body_entered" from="Floor" to="Floor" method="_on_body_entered"]
 [connection signal="body_entered" from="Ceiling" to="Ceiling" method="_on_body_entered"]
+[connection signal="body_entered" from="Game Elements/Balloon" to="Game Elements/Balloon" method="_on_body_entered"]
