@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://337yihf86h8l"]
+[gd_scene load_steps=36 format=3 uid="uid://337yihf86h8l"]
 
 [ext_resource type="Script" uid="uid://c44a8doqghr23" path="res://Globals.gd" id="1_5eo6v"]
 [ext_resource type="Script" uid="uid://2k6slmd1set3" path="res://addons/block_code/simple_nodes/simple_character/simple_character.gd" id="1_lho3r"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b5vnfaqcfnpop" path="res://Obsts/falling_stuff.tscn" id="10_p2wvv"]
 [ext_resource type="PackedScene" uid="uid://btrqxnlb8oml5" path="res://Obsts/cloud.tscn" id="10_x0ixw"]
 [ext_resource type="Script" uid="uid://boe16o7irjdsc" path="res://floor.gd" id="12_cravt"]
+[ext_resource type="Script" uid="uid://dsc0wgrf43wsi" path="res://AddingBlocks.gd" id="13_o5ht5"]
 [ext_resource type="Script" uid="uid://cadqujgffvufo" path="res://ceiling.gd" id="14_p2wvv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrxmk"]
@@ -208,6 +209,7 @@ start_y = -288.0
 [node name="Dropped Stuff" type="RigidBody2D" parent="Game Elements"]
 position = Vector2(-4, -205)
 gravity_scale = 0.5
+script = ExtResource("13_o5ht5")
 
 [node name="Flying Stuff" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
 position = Vector2(-213, 396)

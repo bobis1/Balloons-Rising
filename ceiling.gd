@@ -27,5 +27,6 @@ func _on_body_entered(body: Node2D) -> void:
 	Globals.Score += 1
 	print(Globals.Score)
 	ScoreInt.text = str(Globals.Score)
+		
 
 	pass # Replace with function body.
