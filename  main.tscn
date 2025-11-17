@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://337yihf86h8l"]
+[gd_scene load_steps=37 format=3 uid="uid://337yihf86h8l"]
 
 [ext_resource type="Script" uid="uid://c44a8doqghr23" path="res://Globals.gd" id="1_5eo6v"]
 [ext_resource type="Script" uid="uid://2k6slmd1set3" path="res://addons/block_code/simple_nodes/simple_character/simple_character.gd" id="1_lho3r"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://boe16o7irjdsc" path="res://floor.gd" id="12_cravt"]
 [ext_resource type="Script" uid="uid://dsc0wgrf43wsi" path="res://AddingBlocks.gd" id="13_o5ht5"]
 [ext_resource type="Script" uid="uid://cadqujgffvufo" path="res://ceiling.gd" id="14_p2wvv"]
+[ext_resource type="Texture2D" uid="uid://cglq5sxxl60d1" path="res://Sprites/Heart-removebg-preview.png" id="18_wrxmk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrxmk"]
 size = Vector2(128, 129)
@@ -223,11 +224,12 @@ position = Vector2(-311, 0)
 [node name="Falling Stuff2" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_p2wvv")]
 position = Vector2(340, -27)
 
-[node name="Balloon" type="Area2D" parent="Game Elements" node_paths=PackedStringArray("balloonSprite")]
+[node name="Balloon" type="Area2D" parent="Game Elements" node_paths=PackedStringArray("balloonSprite", "hearts")]
 position = Vector2(2, -4.000061)
 scale = Vector2(0.49421966, 0.48677248)
 script = ExtResource("10_lv7mh")
 balloonSprite = NodePath("BalloonSprite")
+hearts = [NodePath("../Heart"), NodePath("../Heart2"), NodePath("../Heart3")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game Elements/Balloon"]
 position = Vector2(-0.014621258, -72.70646)
@@ -238,6 +240,21 @@ shape = SubResource("RectangleShape2D_lv7mh")
 [node name="BalloonSprite" type="Sprite2D" parent="Game Elements/Balloon"]
 scale = Vector2(1, 1.0000001)
 texture = ExtResource("9_kq2gl")
+
+[node name="Heart" type="Sprite2D" parent="Game Elements"]
+position = Vector2(-87.041664, -235)
+scale = Vector2(0.08333334, 0.083333336)
+texture = ExtResource("18_wrxmk")
+
+[node name="Heart2" type="Sprite2D" parent="Game Elements"]
+position = Vector2(-32, -235)
+scale = Vector2(0.08333334, 0.083333336)
+texture = ExtResource("18_wrxmk")
+
+[node name="Heart3" type="Sprite2D" parent="Game Elements"]
+position = Vector2(18.000002, -234)
+scale = Vector2(0.08333334, 0.083333336)
+texture = ExtResource("18_wrxmk")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
