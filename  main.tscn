@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://337yihf86h8l"]
+[gd_scene load_steps=42 format=3 uid="uid://337yihf86h8l"]
 
 [ext_resource type="Script" uid="uid://c44a8doqghr23" path="res://Globals.gd" id="1_5eo6v"]
 [ext_resource type="Script" uid="uid://2k6slmd1set3" path="res://addons/block_code/simple_nodes/simple_character/simple_character.gd" id="1_lho3r"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://boe16o7irjdsc" path="res://floor.gd" id="12_cravt"]
 [ext_resource type="Script" uid="uid://dsc0wgrf43wsi" path="res://AddingBlocks.gd" id="13_o5ht5"]
 [ext_resource type="Script" uid="uid://cadqujgffvufo" path="res://ceiling.gd" id="14_p2wvv"]
+[ext_resource type="Shader" uid="uid://xdfs6fjp3s37" path="res://flicker.gdshader" id="17_tio7k"]
 [ext_resource type="Texture2D" uid="uid://cglq5sxxl60d1" path="res://Sprites/Heart-removebg-preview.png" id="18_wrxmk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrxmk"]
@@ -149,6 +150,46 @@ size = Vector2(203335, 2828.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lv7mh"]
 size = Vector2(186.1228, 240.8042)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ayrij"]
+shader = ExtResource("17_tio7k")
+shader_parameter/hit_opacity = 0.0
+
+[sub_resource type="Animation" id="Animation_tio7k"]
+resource_name = "flicker"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BalloonSprite:material:shader_parameter/hit_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ayrij"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BalloonSprite:material:shader_parameter/hit_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g5tal"]
+_data = {
+&"RESET": SubResource("Animation_ayrij"),
+&"flicker": SubResource("Animation_tio7k")
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_5eo6v")
 
@@ -238,8 +279,16 @@ scale = Vector2(1, 1.0000005)
 shape = SubResource("RectangleShape2D_lv7mh")
 
 [node name="BalloonSprite" type="Sprite2D" parent="Game Elements/Balloon"]
+modulate = Color(1, 1, 1, 0.84313726)
+material = SubResource("ShaderMaterial_ayrij")
 scale = Vector2(1, 1.0000001)
 texture = ExtResource("9_kq2gl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game Elements/Balloon"]
+active = false
+libraries = {
+&"": SubResource("AnimationLibrary_g5tal")
+}
 
 [node name="Heart" type="Sprite2D" parent="Game Elements"]
 position = Vector2(-87.041664, -235)

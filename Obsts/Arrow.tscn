@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6ou00r3ou00h"]
+
+[ext_resource type="PackedScene" uid="uid://b5vnfaqcfnpop" path="res://Obsts/falling_stuff.tscn" id="1_a513e"]
+
+[node name="Arrow" type="Node2D"]
+
+[node name="Falling Stuff" parent="." instance=ExtResource("1_a513e")]
+position = Vector2(0, -6)
+
+[node name="Falling Stuff8" parent="." instance=ExtResource("1_a513e")]
+position = Vector2(-21, -25)
+
+[node name="Falling Stuff9" parent="." instance=ExtResource("1_a513e")]
+position = Vector2(19, -26)
+
+[node name="Falling Stuff10" parent="." instance=ExtResource("1_a513e")]
+position = Vector2(0, -25)
+
+[node name="Falling Stuff11" parent="." instance=ExtResource("1_a513e")]
+position = Vector2(-11, -44)
+
+[node name="Falling Stuff12" parent="." instance=ExtResource("1_a513e")]
+position = Vector2(9, -44)
+
+[node name="Falling Stuff13" parent="." instance=ExtResource("1_a513e")]
+position = Vector2(29, -44)
+
+[node name="Falling Stuff14" parent="." instance=ExtResource("1_a513e")]
+position = Vector2(-31, -44)

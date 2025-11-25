@@ -7,4 +7,3 @@ Use WASD in order to move around
 
 #### Playable link
 https://bobis1.itch.io/balloons-rising
-
