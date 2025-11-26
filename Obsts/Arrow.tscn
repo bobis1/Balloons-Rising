@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b5vnfaqcfnpop" path="res://Obsts/falling_stuff.tscn" id="1_a513e"]
 
-[node name="Arrow" type="Node2D"]
+[node name="Arrow" type="Node2D" groups=["DroppedStuff"]]
 
 [node name="Falling Stuff" parent="." instance=ExtResource("1_a513e")]
 position = Vector2(0, -6)
