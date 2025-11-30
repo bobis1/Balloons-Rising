@@ -1,9 +1,9 @@
 extends Node
 var threshold: int
 var specialThreshold: int
-var falling_stuff = preload("res://Obsts/falling_stuff.tscn")
-var flying_stuff = preload("res://Obsts/flying_stuff.tscn")
-var arrow_scene = preload("res://Obsts/Arrow.tscn")
+var falling_stuff = preload("res://Obsts/falling_stuff.tscn").instantiate()
+var flying_stuff = preload("res://Obsts/flying_stuff.tscn").instantiate()
+var arrow_scene = preload("res://Obsts/Arrow.tscn").instantiate()
 var rng = RandomNumberGenerator.new()
 var boolOfObject
 
@@ -20,27 +20,27 @@ func _process(delta: float) -> void:
 	if Globals.Score >= specialThreshold:
 		#boolOfObject = rng.randi(x) % 2
 		#if boolOfObject == 0:
-		var arrow = arrow_scene.instantiate()
-		arrow.position = Vector2(-322.0, 128.0)
-		add_child(arrow)
-		print("Arrow Spawned")
-		specialThreshold += 20
-		print(get_tree().get_nodes_in_group("DroppedStuff"))
+		for n in 10:
+			var falling = falling_stuff
+			falling.name = n 
+			add_child(falling)
+			falling.position = Vector2(-167.0, -100.0)
+			
+			print("Falling Printd")
+		
 	if Globals.Score >= threshold && Globals.Score < specialThreshold:
 		boolOfObject = rng.randi() % 2
 		if boolOfObject == 0:
-			var falling = falling_stuff.instantiate()
-			falling.position = Vector2(-311.0, 0.0)
+			var falling = falling_stuff
 			add_child(falling)
-			print('falling')
+			falling.position = Vector2(-311.0, 0.0)
+			
 		if boolOfObject == 1:
-			var flying = flying_stuff.instantiate()
-			flying.position = Vector2(-213.0, 396.0)
+			var flying = flying_stuff
 			add_child(flying)
-			print('flying')
+			flying.position = Vector2(-213.0, 396.0)
+			
 		threshold += 10
-		print("block spawned")
-		print(get_tree().get_nodes_in_group("DroppedStuff"))
 	
 	
 	
