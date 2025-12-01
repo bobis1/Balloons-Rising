@@ -1,9 +1,9 @@
 extends Node
 var threshold: int
 var specialThreshold: int
-var falling_stuff = preload("res://Obsts/falling_stuff.tscn").instantiate()
-var flying_stuff = preload("res://Obsts/flying_stuff.tscn").instantiate()
-var arrow_scene = preload("res://Obsts/Arrow.tscn").instantiate()
+var falling_stuff: PackedScene = preload("res://Obsts/falling_stuff.tscn")
+var flying_stuff: PackedScene = preload("res://Obsts/flying_stuff.tscn")
+var arrow_scene: PackedScene = preload("res://Obsts/Arrow.tscn")
 var rng = RandomNumberGenerator.new()
 var boolOfObject
 
@@ -21,22 +21,21 @@ func _process(delta: float) -> void:
 		#boolOfObject = rng.randi(x) % 2
 		#if boolOfObject == 0:
 		for n in 10:
-			var falling = falling_stuff
-			falling.name = n 
+			var falling = create_instance(falling_stuff)
 			add_child(falling)
 			falling.position = Vector2(-167.0, -100.0)
-			
-			print("Falling Printd")
+			print("Falling Printed")
+		specialThreshold += 20
 		
 	if Globals.Score >= threshold && Globals.Score < specialThreshold:
 		boolOfObject = rng.randi() % 2
 		if boolOfObject == 0:
-			var falling = falling_stuff
+			var falling = create_instance(falling_stuff)
 			add_child(falling)
 			falling.position = Vector2(-311.0, 0.0)
 			
 		if boolOfObject == 1:
-			var flying = flying_stuff
+			var flying = create_instance(flying_stuff)
 			add_child(flying)
 			flying.position = Vector2(-213.0, 396.0)
 			
@@ -48,3 +47,7 @@ func _process(delta: float) -> void:
 	
 
 	pass
+	
+func create_instance(add):
+	var scene_instance = add.instantiate()
+	return scene_instance
