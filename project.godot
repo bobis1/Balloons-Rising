@@ -32,6 +32,7 @@ enabled=PackedStringArray("res://addons/block_code/plugin.cfg", "res://addons/go
 
 DroppedStuff=""
 Cloud=""
+HealthPickup=""
 
 [input]
 

@@ -30,12 +30,28 @@ func _on_body_entered(body):
 			balloonSprite.material.set_shader_parameter("hit_opacity", 0)
 			get_tree().change_scene_to_file("res:// main.tscn")
 			anim.play("RESET")
+			SaveData()
 			Globals.Score = 0
 		anim.active = true
 		anim.play("flicker")
+	if body.is_in_group("HealthPickup"):
+		if(Globals.Lives != 3):
+			Globals.Lives += 1
+			print("Lives:", Globals.Lives)
+			if(Globals.Lives == 3):
+				hearts[0].show()
+			if(Globals.Lives == 2):
+				hearts[1].show()
+			
+			
 		
-		
+func SaveData():
+	var data = Globals.Score
+	var file = FileAccess.open("user://save.json", FileAccess.WRITE)
+	file.store_var(data)
+	file.close()
 
+	print("Game saved!")
 	
 	
 		

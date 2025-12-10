@@ -1,9 +1,11 @@
 extends Node
 var threshold: int
 var specialThreshold: int
+var healthThreshold: int
 var falling_stuff: PackedScene = preload("res://Obsts/falling_stuff.tscn")
 var flying_stuff: PackedScene = preload("res://Obsts/flying_stuff.tscn")
 var arrow_scene: PackedScene = preload("res://Obsts/Arrow.tscn")
+var health_pickup: PackedScene = preload("res://Obsts/health_pickup.tscn")
 var rng = RandomNumberGenerator.new()
 var boolOfObject
 
@@ -12,6 +14,7 @@ var boolOfObject
 func _ready() -> void:
 	threshold = 10
 	specialThreshold = 20
+	healthThreshold = 30
 	pass # Replace with function body.
 
 
@@ -26,6 +29,11 @@ func _process(delta: float) -> void:
 			falling.position = Vector2(-167.0, -100.0)
 			print("Falling Printed")
 		specialThreshold += 20
+	if Globals.Score >= healthThreshold:
+		var healthPickup = health_pickup.instantiate()
+		add_child(healthPickup)
+		healthPickup.position = Vector2(1, -410)
+		
 		
 	if Globals.Score >= threshold && Globals.Score < specialThreshold:
 		boolOfObject = rng.randi() % 2
