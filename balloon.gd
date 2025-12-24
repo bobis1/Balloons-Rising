@@ -5,6 +5,7 @@ var poppedTexture: Texture
 @export var popingSound: AudioStreamPlayer2D
 var timer: float
 @onready var anim: AnimationPlayer = $AnimationPlayer
+@export var lastScoreInt: Label
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Globals.Lives = 3
@@ -48,11 +49,10 @@ func _on_body_entered(body):
 			
 		
 func SaveData():
-	var data = Globals.Score
-	var file = FileAccess.open("user://save.json", FileAccess.WRITE)
-	file.store_var(data)
+	var file = FileAccess.open("res://save.json", FileAccess.READ_WRITE)
+	file.store_var(Globals.Score)
+	lastScoreInt = file.get_var()
 	file.close()
-
 	print("Game saved!")
 	
 	
