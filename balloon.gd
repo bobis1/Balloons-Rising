@@ -2,6 +2,7 @@ extends Area2D
 @export var balloonSprite: Sprite2D
 var poppedTexture: Texture
 @export var hearts: Array[Node] = []
+@export var popingSound: AudioStreamPlayer2D
 var timer: float
 @onready var anim: AnimationPlayer = $AnimationPlayer
 # Called when the node enters the scene tree for the first time.
@@ -26,6 +27,7 @@ func _on_body_entered(body):
 		if(Globals.Lives == 0):
 			balloonSprite.texture = poppedTexture
 			hearts[2].hide()
+			popingSound.play()
 			await get_tree().create_timer(1).timeout
 			balloonSprite.material.set_shader_parameter("hit_opacity", 0)
 			get_tree().change_scene_to_file("res:// main.tscn")
