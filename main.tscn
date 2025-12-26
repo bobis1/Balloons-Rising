@@ -1,21 +1,21 @@
-[gd_scene load_steps=24 format=3 uid="uid://337yihf86h8l"]
+[gd_scene load_steps=24 format=3 uid="uid://cj1k8efrg8pel"]
 
-[ext_resource type="Script" uid="uid://c44a8doqghr23" path="res://Globals.gd" id="1_5eo6v"]
-[ext_resource type="Texture2D" uid="uid://bcvmxkvnkdwky" path="res://Sprites/Player-removebg-preview.png" id="2_p2wvv"]
-[ext_resource type="Script" uid="uid://csrgr7q2rhyk8" path="res://Player.gd" id="2_tio7k"]
-[ext_resource type="Texture2D" uid="uid://c5j15kektht61" path="res://Sprites/Balloon-removebg-preview.png" id="9_kq2gl"]
-[ext_resource type="PackedScene" uid="uid://nnofri8m8sn0" path="res://Obsts/health_pickup.tscn" id="10_5eo6v"]
-[ext_resource type="PackedScene" uid="uid://cn54bc1gvxgda" path="res://Obsts/flying_stuff.tscn" id="10_by80l"]
-[ext_resource type="Script" uid="uid://e0n0oxwdbjtn" path="res://balloon.gd" id="10_lv7mh"]
-[ext_resource type="PackedScene" uid="uid://b5vnfaqcfnpop" path="res://Obsts/falling_stuff.tscn" id="10_p2wvv"]
-[ext_resource type="PackedScene" uid="uid://btrqxnlb8oml5" path="res://Obsts/cloud.tscn" id="10_x0ixw"]
-[ext_resource type="Script" uid="uid://boe16o7irjdsc" path="res://floor.gd" id="12_cravt"]
-[ext_resource type="AudioStream" uid="uid://rxco51gxohqa" path="res://Audio/mixkit-ballon-blows-up-3071.wav" id="12_p2wvv"]
-[ext_resource type="Script" uid="uid://dsc0wgrf43wsi" path="res://AddingBlocks.gd" id="13_o5ht5"]
-[ext_resource type="Script" uid="uid://cadqujgffvufo" path="res://ceiling.gd" id="14_p2wvv"]
-[ext_resource type="AudioStream" uid="uid://n2pbbt3anwv" path="res://Audio/drumbit.wav" id="16_5eo6v"]
-[ext_resource type="Shader" uid="uid://xdfs6fjp3s37" path="res://flicker.gdshader" id="17_tio7k"]
-[ext_resource type="Texture2D" uid="uid://cglq5sxxl60d1" path="res://Sprites/Heart-removebg-preview.png" id="18_wrxmk"]
+[ext_resource type="Script" uid="uid://c44a8doqghr23" path="res://Globals.gd" id="1_2cqfq"]
+[ext_resource type="Script" uid="uid://csrgr7q2rhyk8" path="res://Player.gd" id="2_yaehf"]
+[ext_resource type="Texture2D" uid="uid://bcvmxkvnkdwky" path="res://Sprites/Player-removebg-preview.png" id="3_074og"]
+[ext_resource type="Script" uid="uid://boe16o7irjdsc" path="res://floor.gd" id="4_cegan"]
+[ext_resource type="Script" uid="uid://cadqujgffvufo" path="res://ceiling.gd" id="5_82xsv"]
+[ext_resource type="PackedScene" uid="uid://btrqxnlb8oml5" path="res://Obsts/cloud.tscn" id="6_getpj"]
+[ext_resource type="Script" uid="uid://dsc0wgrf43wsi" path="res://AddingBlocks.gd" id="7_ryguw"]
+[ext_resource type="PackedScene" uid="uid://cn54bc1gvxgda" path="res://Obsts/flying_stuff.tscn" id="8_d13ii"]
+[ext_resource type="PackedScene" uid="uid://b5vnfaqcfnpop" path="res://Obsts/falling_stuff.tscn" id="9_1u8w0"]
+[ext_resource type="PackedScene" uid="uid://nnofri8m8sn0" path="res://Obsts/health_pickup.tscn" id="10_0odxb"]
+[ext_resource type="Script" uid="uid://e0n0oxwdbjtn" path="res://balloon.gd" id="11_lswn8"]
+[ext_resource type="Shader" uid="uid://xdfs6fjp3s37" path="res://flicker.gdshader" id="12_a6jrf"]
+[ext_resource type="Texture2D" uid="uid://c5j15kektht61" path="res://Sprites/Balloon-removebg-preview.png" id="13_xuqvo"]
+[ext_resource type="AudioStream" uid="uid://rxco51gxohqa" path="res://Audio/mixkit-ballon-blows-up-3071.wav" id="14_qsp4k"]
+[ext_resource type="AudioStream" uid="uid://n2pbbt3anwv" path="res://Audio/drumbit.wav" id="15_kq58d"]
+[ext_resource type="Texture2D" uid="uid://cglq5sxxl60d1" path="res://Sprites/Heart-removebg-preview.png" id="16_seu75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrxmk"]
 size = Vector2(128, 129)
@@ -27,7 +27,7 @@ size = Vector2(203335, 2828.5)
 size = Vector2(186.1228, 240.8042)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ayrij"]
-shader = ExtResource("17_tio7k")
+shader = ExtResource("12_a6jrf")
 shader_parameter/hit_opacity = 0.0
 
 [sub_resource type="Animation" id="Animation_ayrij"]
@@ -67,14 +67,13 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_5eo6v")
+script = ExtResource("1_2cqfq")
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["affected_by_gravity"]]
 position = Vector2(-218, -57)
 scale = Vector2(0.25, 0.251)
-script = ExtResource("2_tio7k")
-texture = ExtResource("2_p2wvv")
-speed = null
+script = ExtResource("2_yaehf")
+texture = ExtResource("3_074og")
 metadata/_custom_type_script = "uid://2k6slmd1set3"
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Player"]
@@ -90,7 +89,7 @@ shape = SubResource("RectangleShape2D_wrxmk")
 position = Vector2(-34, 11661)
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("12_cravt")
+script = ExtResource("4_cegan")
 ScoreInt = NodePath("../Control/ScoreInt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
@@ -101,60 +100,52 @@ shape = SubResource("RectangleShape2D_cravt")
 position = Vector2(-6, 5907)
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("14_p2wvv")
+script = ExtResource("5_82xsv")
 ScoreInt = NodePath("../Control/ScoreInt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
 position = Vector2(-254, -8399)
 shape = SubResource("RectangleShape2D_cravt")
 
-[node name="Cloud" parent="." instance=ExtResource("10_x0ixw")]
-position = Vector2(387, -412)
+[node name="Cloud" parent="." instance=ExtResource("6_getpj")]
+position = Vector2(387, -288)
 reset_y = 542.0
-start_y = -412.0
+start_y = -288.0
 
-[node name="Cloud2" parent="." instance=ExtResource("10_x0ixw")]
-position = Vector2(-440, -385)
+[node name="Cloud2" parent="." instance=ExtResource("6_getpj")]
+position = Vector2(-422, -278)
 reset_y = 542.0
-start_y = -385.0
+start_y = -288.0
 
 [node name="Game Elements" type="Node" parent="."]
 
 [node name="Dropped Stuff" type="RigidBody2D" parent="Game Elements"]
 position = Vector2(-4, -205)
 gravity_scale = 0.5
-script = ExtResource("13_o5ht5")
+script = ExtResource("7_ryguw")
 
-[node name="Flying Stuff" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
+[node name="Flying Stuff" parent="Game Elements/Dropped Stuff" instance=ExtResource("8_d13ii")]
 position = Vector2(-213, 396)
 
-[node name="Flying Stuff2" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_by80l")]
+[node name="Flying Stuff2" parent="Game Elements/Dropped Stuff" instance=ExtResource("8_d13ii")]
 position = Vector2(234, 396)
 
-[node name="Falling Stuff" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_p2wvv")]
+[node name="Falling Stuff" parent="Game Elements/Dropped Stuff" instance=ExtResource("9_1u8w0")]
 position = Vector2(-311, 0)
 
-[node name="Falling Stuff2" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_p2wvv")]
+[node name="Falling Stuff2" parent="Game Elements/Dropped Stuff" instance=ExtResource("9_1u8w0")]
 position = Vector2(340, -27)
 
-[node name="health_pickup" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_5eo6v")]
+[node name="health_pickup" parent="Game Elements/Dropped Stuff" instance=ExtResource("10_0odxb")]
 position = Vector2(-125, 66)
 
-<<<<<<< Updated upstream
 [node name="Balloon" type="Area2D" parent="Game Elements" node_paths=PackedStringArray("balloonSprite", "hearts", "popingSound")]
-=======
-[node name="Balloon" type="Area2D" parent="Game Elements" node_paths=PackedStringArray("balloonSprite", "hearts", "lastScoreInt")]
->>>>>>> Stashed changes
 position = Vector2(2, -4.000061)
 scale = Vector2(0.49421966, 0.48677248)
-script = ExtResource("10_lv7mh")
+script = ExtResource("11_lswn8")
 balloonSprite = NodePath("BalloonSprite")
 hearts = [NodePath("../Heart"), NodePath("../Heart2"), NodePath("../Heart3")]
-<<<<<<< Updated upstream
 popingSound = NodePath("AudioStreamPlayer2D")
-=======
-lastScoreInt = NodePath("../../Control/LastScoreInt")
->>>>>>> Stashed changes
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game Elements/Balloon"]
 position = Vector2(-0.014621258, -72.70646)
@@ -166,7 +157,7 @@ shape = SubResource("RectangleShape2D_lv7mh")
 modulate = Color(1, 1, 1, 0.84313726)
 material = SubResource("ShaderMaterial_ayrij")
 scale = Vector2(1, 1.0000001)
-texture = ExtResource("9_kq2gl")
+texture = ExtResource("13_xuqvo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Game Elements/Balloon"]
 active = false
@@ -175,30 +166,30 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Game Elements/Balloon"]
-stream = ExtResource("12_p2wvv")
-volume_db = 3.467
+stream = ExtResource("14_qsp4k")
+volume_db = 5.0
 
 [node name="Song" type="AudioStreamPlayer2D" parent="Game Elements/Balloon"]
 position = Vector2(-4.0467834, 8.217517)
 scale = Vector2(2.0233917, 2.054348)
-stream = ExtResource("16_5eo6v")
-volume_db = 2.5
+stream = ExtResource("15_kq58d")
+volume_db = 4.0
 autoplay = true
 
 [node name="Heart" type="Sprite2D" parent="Game Elements"]
 position = Vector2(-87.041664, -235)
 scale = Vector2(0.08333334, 0.083333336)
-texture = ExtResource("18_wrxmk")
+texture = ExtResource("16_seu75")
 
 [node name="Heart2" type="Sprite2D" parent="Game Elements"]
 position = Vector2(-32, -235)
 scale = Vector2(0.08333334, 0.083333336)
-texture = ExtResource("18_wrxmk")
+texture = ExtResource("16_seu75")
 
 [node name="Heart3" type="Sprite2D" parent="Game Elements"]
 position = Vector2(18.000002, -234)
 scale = Vector2(0.08333334, 0.083333336)
-texture = ExtResource("18_wrxmk")
+texture = ExtResource("16_seu75")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -215,15 +206,6 @@ offset_bottom = -298.0
 scale = Vector2(3, 3)
 text = "Score:"
 
-[node name="LastScoreLabel" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 186.0
-offset_top = -326.0
-offset_right = 270.0
-offset_bottom = -303.0
-scale = Vector2(3, 3)
-text = "Last Score:"
-
 [node name="ScoreInt" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 32.0
@@ -233,14 +215,8 @@ offset_bottom = -294.0
 scale = Vector2(3, 3)
 text = "0"
 
-[node name="LastScoreInt" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 454.0
-offset_top = -319.0
-offset_right = 494.0
-offset_bottom = -296.0
-scale = Vector2(3, 3)
-text = "0"
+[node name="StaminaBar" type="Sprite2D" parent="."]
+position = Vector2(0, 163)
 
 [connection signal="body_entered" from="Floor" to="Floor" method="_on_body_entered"]
 [connection signal="body_entered" from="Ceiling" to="Ceiling" method="_on_body_entered"]

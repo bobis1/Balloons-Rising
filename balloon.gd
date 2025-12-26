@@ -31,9 +31,8 @@ func _on_body_entered(body):
 			popingSound.play()
 			await get_tree().create_timer(1).timeout
 			balloonSprite.material.set_shader_parameter("hit_opacity", 0)
-			get_tree().change_scene_to_file("res:// main.tscn")
+			get_tree().change_scene_to_file("res://main.tscn")
 			anim.play("RESET")
-			SaveData()
 			Globals.Score = 0
 		anim.active = true
 		anim.play("flicker")
